@@ -29,21 +29,12 @@ model Tournament {
   matches   Match[]
 }
 
-enum Round {
-  FIRST_ROUND
-  SECOND_ROUND
-  THIRD_ROUND
-  FOURTH_ROUND
-  QUARTERFINAL
-  SEMIFINAL
-  FINAL
-}
 
 model Match {
   id            Int        @id @default(autoincrement())
   tournament    Tournament @relation(fields: [tournamentId], references: [id])
   tournamentId  Int
-  round         Round
+  round         String
   player1       Player     @relation("Player1", fields: [player1Id], references: [id])
   player1Id     Int
   player2       Player     @relation("Player2", fields: [player2Id], references: [id])

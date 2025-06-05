@@ -1,24 +1,24 @@
-import { Round } from '@prisma/client';
 import { prisma } from '../../lib/prisma';
 
-const roundOrder: Round[] = [
-  Round.FIRST_ROUND,
-  Round.SECOND_ROUND,
-  Round.THIRD_ROUND,
-  Round.FOURTH_ROUND,
-  Round.QUARTERFINAL,
-  Round.SEMIFINAL,
-  Round.FINAL,
-];
+export const roundOrder = [
+  'FIRST_ROUND',
+  'SECOND_ROUND',
+  'THIRD_ROUND',
+  'FOURTH_ROUND',
+  'QUARTERFINAL',
+  'SEMIFINAL',
+  'FINAL',
+] as const;
+export type Round = (typeof roundOrder)[number];
 
 const roundLabels: Record<Round, string> = {
-  [Round.FIRST_ROUND]: '1ª Rodada',
-  [Round.SECOND_ROUND]: '2ª Rodada',
-  [Round.THIRD_ROUND]: '3ª Rodada',
-  [Round.FOURTH_ROUND]: '4ª Rodada',
-  [Round.QUARTERFINAL]: 'Quartas',
-  [Round.SEMIFINAL]: 'Semifinal',
-  [Round.FINAL]: 'Final',
+  FIRST_ROUND: '1ª Rodada',
+  SECOND_ROUND: '2ª Rodada',
+  THIRD_ROUND: '3ª Rodada',
+  FOURTH_ROUND: '4ª Rodada',
+  QUARTERFINAL: 'Quartas',
+  SEMIFINAL: 'Semifinal',
+  FINAL: 'Final',
 };
 
 export default async function Bracket() {
@@ -32,17 +32,17 @@ export default async function Bracket() {
   });
 
   const matchesByRound: Record<Round, typeof matches> = {
-    [Round.FIRST_ROUND]: [],
-    [Round.SECOND_ROUND]: [],
-    [Round.THIRD_ROUND]: [],
-    [Round.FOURTH_ROUND]: [],
-    [Round.QUARTERFINAL]: [],
-    [Round.SEMIFINAL]: [],
-    [Round.FINAL]: [],
+    FIRST_ROUND: [],
+    SECOND_ROUND: [],
+    THIRD_ROUND: [],
+    FOURTH_ROUND: [],
+    QUARTERFINAL: [],
+    SEMIFINAL: [],
+    FINAL: [],
   };
 
   for (const match of matches) {
-    matchesByRound[match.round].push(match);
+    matchesByRound[match.round as Round].push(match);
   }
 
   return (
