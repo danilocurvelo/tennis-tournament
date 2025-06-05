@@ -9,6 +9,7 @@ This project was initialized manually with **Next.js 15**, **TypeScript**, **Tai
 - `npm run start` - Run production build
 - `npm run lint` - Lint files using ESLint
 - `npm run test` - Run unit tests with Jest
+- `npm run seed` - Seed the database with 128 mock players and first-round matches
 
 ## Setup
 
