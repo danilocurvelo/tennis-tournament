@@ -1,4 +1,4 @@
-import { PrismaClient, Round } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -32,7 +32,7 @@ async function main() {
     await prisma.match.create({
       data: {
         tournamentId: tournament.id,
-        round: Round.FIRST_ROUND,
+        round: 'FIRST_ROUND',
         player1Id: players[i].id,
         player2Id: players[127 - i].id,
         matchDate: new Date('2024-01-02'),
